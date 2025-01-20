@@ -2,7 +2,8 @@
 
 ## Online with Google Colab notebook
 
-https://colab.research.google.com/github/IvanHCenalmor/Auto_Slides/blob/main/Generate_presentations.ipynb
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanHCenalmor/Auto_Slides/blob/main/Generate_presentations.ipynb)
+
 
 ## Locally with Conda
 

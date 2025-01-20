@@ -54,13 +54,13 @@ if __name__ == "__main__":
 
     # Generate PowerPoint files with weekly dates and individual slides for each member
     start_date = datetime(2025, 1, 27)
-    end_date = datetime(2025, 3, 1)
+    end_date = datetime(2025, 7, 1)
     current_date = start_date
 
     save_path = "presentations/"
     os.makedirs(save_path, exist_ok=True)
 
     while current_date <= end_date:
-        filename = f"{current_date.strftime('%Y%m%d')}_5min_Presentaiton.pptx"
+        filename = f"{current_date.strftime('%Y-%m-%d')}_5min_Presentaiton.pptx"
         create_ppt_with_date_and_members(current_date, save_path, filename, lab_members)
         current_date += timedelta(weeks=1)
