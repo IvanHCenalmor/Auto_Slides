@@ -2,7 +2,8 @@ from pptx import Presentation
 import os
 
 def create_ppt_with_date_and_members(date, save_path, filename, members):
-    prs = Presentation("Presentation_template.pptx")
+    base_path = os. getcwd() 
+    prs = Presentation(os.path.join(base_path, "Presentation_template.pptx"))
     
     # Edit the first slide
     slide = prs.slides[0]
