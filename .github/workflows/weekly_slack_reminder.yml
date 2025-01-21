@@ -3,8 +3,8 @@ name: Weekly Slack Reminder
 
 on:
   schedule:
-    # Runs at 9:00 AM UTC every Friday
-    - cron: '0 9 * * 5'
+    # Runs at 9:00 AM UTC every Wednesday
+    - cron: '0 9 * * 3'
   workflow_dispatch:
 
 jobs:
@@ -30,17 +30,11 @@ jobs:
       run: |
         output=$(python3 scripts/calculate_next_monday.py)
         echo "date=$output" >> $GITHUB_OUTPUT
-    - name: Generate the presentation on Google Drive
-      id: generate_presentation
+    - name: Generates Google Drive presentation and sends a Slack message
       env:
         SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         FOLDER_ID: ${{ secrets.FOLDER_ID }}
-      run: |
-        output=$(python3 scripts/create_presentation.py --date ${{ steps.get_date.outputs.date }})
-        echo "link=$output" >> $GITHUB_OUTPUT
-    - name: Run Slack reminder script
-      env:
         SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
         SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
       run: |
-        python scripts/slack_message.py --token $SLACK_TOKEN --channel $SLACK_CHANNEL --link ${{ steps.generate_presentation.outputs.link }}
+        python scripts/slack_message.py --token $SLACK_TOKEN --channel $SLACK_CHANNEL --date ${{ steps.get_date.outputs.date }}
