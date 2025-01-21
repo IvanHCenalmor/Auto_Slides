@@ -17,8 +17,8 @@ def send_slack_message(token, channel, text):
         raise Exception(f"Request to Slack API failed with status code {response.status_code}, response: {response.text}")
 
 # Main function
-def main(token, channel, link,):
-    message = f"Here is the link to this week's slides: {link}"
+def main(token, channel, link, date):
+    message = f"Here is the link to next week's slides ({date}): {link}"
     send_slack_message(token, channel, message)
 
 if __name__ == "__main__":
@@ -26,6 +26,7 @@ if __name__ == "__main__":
     parser.add_argument('--token', required=True, help='Slack API token')
     parser.add_argument('--channel', required=True, help='Slack channel ID')
     parser.add_argument('--link', required=True, help='Link to the slides')
+    parser.add_argument('--date', required=True, help='Date for the slides')
 
     args = parser.parse_args()
-    main(token=args.token, channel=args.channel, link=args.link)
+    main(token=args.token, channel=args.channel, link=args.link, date=args.date)
