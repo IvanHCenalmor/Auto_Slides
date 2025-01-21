@@ -29,7 +29,6 @@ jobs:
       id: get_date
       run: |
         output=$(python3 scripts/calculate_next_monday.py)
-        echo "$output"
         echo "date=$output" >> $GITHUB_OUTPUT
     - name: Generate the presentation on Google Drive
       id: generate_presentation
@@ -38,7 +37,6 @@ jobs:
         FOLDER_ID: ${{ secrets.FOLDER_ID }}
       run: |
         output=$(python3 scripts/create_presentation.py --date ${{ steps.get_date.outputs.date }})
-        echo "$output"
         echo "link=$output" >> $GITHUB_OUTPUT
     - name: Run Slack reminder script
       env:
