@@ -26,7 +26,7 @@ def generate_slides_link(link, slide_name):
         days_until_monday = 7
     next_monday = today + timedelta(days=days_until_monday)
     slide_date = next_monday.strftime('%Y-%m-%d')
-    return f'{link}{slide_date}[slide_name]'
+    return f'{link}{slide_date}{slide_name}'
 
 # Main function
 def main(token, channel, link, slide_name):
