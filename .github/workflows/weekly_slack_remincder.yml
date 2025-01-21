@@ -37,7 +37,7 @@ jobs:
         SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         FOLDER_ID: ${{ secrets.FOLDER_ID }}
       run: |
-        output=$(python3 scripts/calculate_next_monday.py --date ${{ steps.get_date.outputs.date }})
+        output=$(python3 scripts/create_presentation.py --date ${{ steps.get_date.outputs.date }})
         echo "$output"
         echo "link=$output" >> $GITHUB_OUTPUT
     - name: Run Slack reminder script

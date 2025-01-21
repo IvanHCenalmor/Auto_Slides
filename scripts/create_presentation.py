@@ -1,6 +1,5 @@
 from pptx import Presentation
 import os
-import json
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
@@ -51,10 +50,13 @@ def create_shareable_link(service, file_id):
 
 if __name__ == "__main__":
     import argparse
+    import json
     
     parser = argparse.ArgumentParser(description='Send a weekly reminder to Slack with a link to slides.')
     parser.add_argument('--date', required=True, help='Date')
-    date = argparse['date']
+    
+    args = parser.parse_args()
+    date = args.date
 
     # List of lab members
     lab_members = ["Guillaume", "Gautier", "Joanna", "Hannah", "Jaakko", "Ana", "Sujan", "Sarah", "Monika", "Marcela", "Iván", "Johanna"]
