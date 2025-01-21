@@ -46,7 +46,7 @@ def upload_to_drive(service, file_path, filename, folder_id):
     return file.get('id')
 
 def create_shareable_link(service, file_id):
-    permission = {'type': 'anyone', 'role': 'editor'}
+    permission = {'type': 'anyone', 'role': 'writer'}
     service.permissions().create(fileId=file_id, body=permission).execute()
     return f"https://drive.google.com/file/d/{file_id}/view"
 
