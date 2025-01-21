@@ -15,7 +15,7 @@ def create_ppt_with_date_and_members(date, save_path, filename, members):
     subtitle = slide.placeholders[1]
     
     title.text = "5 minutes presentations"
-    subtitle.text = f"Date: {date.strftime('%Y-%m-%d')}"
+    subtitle.text = f"Date: {date}"
     
     for member in members:
         slide_layout = prs.slide_layouts[2]
