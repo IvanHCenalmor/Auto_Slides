@@ -1,4 +1,3 @@
-
 name: Weekly Slack Reminder
 
 on:
@@ -30,4 +29,5 @@ jobs:
         SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         FOLDER_ID: ${{ secrets.FOLDER_ID }}
       run: |
+        echo $SERVICE_ACCOUNT_JSON | base64 --decode > service_account.json
         python scripts/test.py
