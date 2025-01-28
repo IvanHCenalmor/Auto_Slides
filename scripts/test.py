@@ -16,11 +16,11 @@ def check_if_shared_drive(service, folder_id):
 if __name__ == "__main__":
     # Get the values for the connection with Google Drive's API
     SCOPES = ['https://www.googleapis.com/auth/drive.file']
-    SERVICE_ACCOUNT_JSON = os.getenv('SERVICE_ACCOUNT_JSON')
+    SERVICE_ACCOUNT_FILE = 'service_account.json'
     FOLDER_ID = os.getenv('FOLDER_ID')
 
     # Get the credentials from Google Drive's API
-    credentials = service_account.Credentials.from_service_account_info(json.loads(SERVICE_ACCOUNT_JSON), scopes=SCOPES)
+    credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service = build('drive', 'v3', credentials=credentials)
 
     # Check if the folder is under a Shared Drive

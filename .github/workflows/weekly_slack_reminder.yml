@@ -1,4 +1,3 @@
-
 name: Weekly Slack Reminder
 
 on:
@@ -25,16 +24,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Get the next Monday date
-      id: get_date
-      run: |
-        output=$(python3 scripts/calculate_next_monday.py)
-        echo "date=$output" >> $GITHUB_OUTPUT
     - name: Generates Google Drive presentation and sends a Slack message
       env:
         SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         FOLDER_ID: ${{ secrets.FOLDER_ID }}
-        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
       run: |
-        python scripts/slack_message.py --token $SLACK_TOKEN --channel $SLACK_CHANNEL --date ${{ steps.get_date.outputs.date }}
+        echo $SERVICE_ACCOUNT_JSON | base64 --decode > service_account.json
+        python scripts/test.py
